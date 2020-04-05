@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MyApp</string>
+    <string name="cityName">city Name</string>
+    <string name="Search">Search</string>
+    <string name="WindSpeed">wind Speed %s</string>
+    <string name="Temp">Temp min %s and max %s</string>
+    <string name="SearchByCityName">Search by city name</string>
+    <string name="SearchByCityLocation">Weather by location</string>
+    <string name="gettingLocation">getting the location</string>
+    <string name="loadTheData">Load the data</string>
+    <string name="You_dont_allow_location">You don\'t allow the location</string>
+</resources>

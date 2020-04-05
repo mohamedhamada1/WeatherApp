@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/app_navigation"
+    app:startDestination="@id/fragmentLanding">
+
+    <fragment
+        android:id="@+id/fragmentList"
+        android:name="uae.weather.myapplication.ui.list.view.FragmentList"
+        android:label="FragmentList" />
+    <fragment
+        android:id="@+id/fragmentLanding"
+        android:name="uae.weather.myapplication.ui.landing.view.FragmentLanding"
+        android:label="FragmentLanding" >
+        <action
+            android:id="@+id/action_fragmentLanding_to_fragmentList"
+            app:destination="@id/fragmentList" />
+        <action
+            android:id="@+id/action_fragmentLanding_to_fragmentWeatherByLocation"
+            app:destination="@id/fragmentWeatherByLocation" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentWeatherByLocation"
+        android:name="uae.weather.myapplication.ui.location.view.FragmentWeatherByLocation"
+        android:label="FragmentWeatherByLocation" />
+</navigation>

@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    def rcBuildNumber = 1
+    def currentVName = "1.0.0"
+    def buildNumber = "_b$rcBuildNumber"
+    defaultConfig {
+        applicationId "uae.weather.myapplication"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode rcBuildNumber
+        versionName "$currentVName"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        dev {
+            versionName "DEV_$currentVName$buildNumber"
+            buildConfigField "String", "BASE_URL", '"https://api.openweathermap.org/data/2.5/"'
+            buildConfigField "String", "API_KEY", '"0371f510e19f5d6e6bc62fd506302aea"'
+        }
+        production {
+            versionName "$currentVName"
+            buildConfigField "String", "BASE_URL", '"https://api.openweathermap.org/data/2.5/"'
+            buildConfigField "String", "API_KEY", '"0371f510e19f5d6e6bc62fd506302aea"'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // Android arch component
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.core:core-ktx:$rootProject.coreKotlinKTX"
+
+    //recycler
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerview"
+
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompact"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "org.robolectric:robolectric:4.3"
+    androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+
+    // dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android:$rootProject.daggerCompiler"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerCompiler"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerCompiler"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerCompiler"
+
+    // data binding
+    kapt 'com.android.databinding:compiler:3.1.4'
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.nav_version"
+
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"
+
+
+    // Google play services
+    implementation "com.google.android.gms:play-services-location:$rootProject.playServicesVersion"
+
+    implementation 'com.github.quickpermissions:quickpermissions-kotlin:0.4.1'
+
+}
